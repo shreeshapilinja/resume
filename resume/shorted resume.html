@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>sas.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<style>
+  .profile-picture {
+    width: 160px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    float: right;
+    margin-left: 20px;
+  }
+  
+</style>
+<div>
+  <img src="photo.png" alt="Profile Picture" class="profile-picture">
+  <h1><strong>Shreesha B</strong></h1>
+  <ul>
+    <li><strong>Email:</strong> shreeshapilinja@gmail.com</li>
+    <li><strong>Phone:</strong> 8147238329</li>
+    <li><strong>DOB:</strong> 5th July 2002</li>
+    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/shreeshapilinja/">linkedin.com/in/shreeshapilinja/</a></li>
+    <li><strong>Address:</strong> #3-42, Pilinja House, Vittal Mudnoor Post & Village, Bantwal Taluk, Dakshina Kannada 574243</li>
+  </ul>
+</div>
+<hr>
+<h2 id="profile">Profile</h2>
+<p>Highly motivated and dedicated engineering student pursuing a degree in Artificial Intelligence and Machine Learning. Skilled in Python, C, web development, and mobile app development. Strong problem-solving abilities with a passion for programming and a keen interest in teaching, web development, and mobile app development.</p>
+<hr>
+<h2 id="education">Education</h2>
+<ul>
+<li>
+<p><strong>Bachelor of Engineering, Artificial Intelligence and Machine Learning</strong>
+Vivekananda College of Engineering and Technology
+Pursuing, Currently in progress (Expected Year of Completion: 2024)</p>
+</li>
+<li>
+<p><strong>Pre-University College (PUC)</strong>
+Vidya Soudha PU College
+Percentage: 77.833%
+Year: 2020</p>
+</li>
+<li>
+<p><strong>Secondary School Leaving Certificate (SSLC)</strong>
+Sri Ayyappa Education Center
+Percentage: 93.92%
+Year: 2018</p>
+</li>
+</ul>
+<hr>
+<h2 id="skills">Skills</h2>
+<ul>
+<li>Programming Languages: Python, C, C++, Java</li>
+<li>Web Development: HTML, CSS, JavaScript</li>
+<li>Mobile App Development: Android Studio</li>
+<li>Languages: English (Advanced), Hindi (Advanced), Kannada (Fluent)</li>
+</ul>
+<hr>
+<h2 id="coursework-and-certifications">Coursework and Certifications</h2>
+<ul>
+<li>
+<p><strong>Supervised Machine Learning: Regression and Classification</strong>
+DeepLearning.AI and Stanford University, 2023</p>
+</li>
+<li>
+<p><strong>C++ For C Programmers, Part A</strong>
+University of California, Santa Cruz, 2022</p>
+</li>
+<li>
+<p><strong>Mathematics for Machine Learning: Linear Algebra</strong>
+Imperial College London, 2022</p>
+</li>
+<li>
+<p><strong>Python Basics &amp; Python Functions, Files, and Dictionaries</strong>
+University of Michigan, 2022</p>
+</li>
+<li>
+<p><strong>Bootcamp on &quot;Practical Web Application Hacking&quot;</strong>
+ShapeAl, 2022</p>
+</li>
+</ul>
+<h2 id="projects">Projects</h2>
+<ul>
+<li>
+<p><strong>Medical Management System (DBMS Project)</strong>
+Developed a medical management system for handling medicines, managing customers, and employee records.</p>
+</li>
+<li>
+<p><strong>Mobile App: Video Player and Meeting Manager</strong>
+Developed a mobile app using Android Studio for video playback and scheduling meetings.</p>
+</li>
+<li>
+<p><strong>Image Classification (Digital Image Processing Project)</strong>
+Implemented image classification algorithms to categorize images (cars vs bikes).</p>
+</li>
+<li>
+<p><strong>Gallery Website</strong>
+Developed a gallery website with features like slideshow, download, copy, and zoom.
+Link: <a href="https://shreeshapilinja.github.io/gallary-sharanya-mam-s-marriage/">shreeshapilinja.github.io/gallary-sharanya-mam-s-marriage/</a></p>
+</li>
+<li>
+<p><strong>Website: VCFyalab</strong>
+Created a website using WordPress for VCFyalab.
+Link: <a href="https://vcfyalab.wordpress.com/">vcfyalab.wordpress.com</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="awards--honors">Awards &amp; Honors</h2>
+<ul>
+<li>Rajya Puraskar in Scouts - Scouts Association, 2018</li>
+<li>CodeBlind Competition - 1st Place - IEEE, 2022</li>
+<li>Codeve Competition - 2nd Place - IEEE, 2022</li>
+<li>Elocution Competition - 2nd Prize, 2020</li>
+<li>Quiz Competitions - 2nd Prize, 2020</li>
+</ul>
+<hr>
+<h2 id="additional-activities">Additional Activities</h2>
+<ul>
+<li>Attended online session on &quot;Apple Siri - How Voice Recognition Works?&quot;</li>
+<li>Actively participated in the webinar &quot;IPR and Patent Laws&quot;</li>
+<li>Participated in National Jamboree</li>
+<li>Delivered a talk on Website and App Development</li>
+<li>Participated in Ideathon</li>
+<li>Participated in &quot;Cultural Quest — A National Level E-Quiz on Cultural Diversity of Karnataka and Uttarakhand&quot;</li>
+<li>Participated in &quot;Exclusive React Bootcamp: A Comprehensive Session&quot;</li>
+<li>Successfully completed the 7-day long Bootcamp on &quot;Practical Web Application Hacking&quot; by ShapeAl</li>
+</ul>
+
+</body>
+</html>
